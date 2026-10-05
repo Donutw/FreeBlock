@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="FreeBlock finds worthwhile activities in the gaps between your classes." />
+    <title>FreeBlock — make time worth using</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2317232f'/%3E%3Cpath d='M20 34h24M32 20v28' stroke='%23ffcc66' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <nav class="topbar">
+        <div class="brand"><span class="brand-mark">+</span><span>FREEBLOCK</span></div>
+        <div class="nav-note"><span class="status-dot"></span> timetable-aware activity finder</div>
+      </nav>
+
+      <section class="intro">
+        <div>
+          <p class="eyebrow">YOUR WEEK, WITH BETTER GAPS</p>
+          <h1>Make your free time<br /><em>worth using.</em></h1>
+          <p class="lede">FreeBlock reads the spaces between your classes, then finds live UCL and London activities that actually fit.</p>
+        </div>
+        <div class="intro-stamp"><span>01</span><span>connect</span><span>discover</span><span>go</span></div>
+      </section>
+
+      <section class="workspace">
+        <aside class="controls card">
+          <div class="card-heading"><span class="step">01</span><div><p class="eyebrow">START HERE</p><h2>Your timetable</h2></div></div>
+          <button class="connect-button" id="connectBtn"><span class="button-icon">↗</span><span><strong>Connect UCL timetable</strong><small>Paste a private iCalendar URL securely</small></span></button>
+          <div class="timetable-form" id="timetableForm">
+            <label>Private iCalendar subscription URL<input id="icalUrl" type="url" placeholder="https://.../calendar.ics" autocomplete="off" spellcheck="false" /></label>
+            <p class="privacy-note">Used only for this session. FreeBlock never displays or stores the URL.</p>
+            <button class="secondary-button full-button" id="readTimetableBtn">Read my timetable</button>
+            <p class="form-error" id="timetableError" role="alert"></p>
+          </div>
+          <div class="connected-state" id="connectedState"><span class="status-dot"></span><span><strong>Demo timetable connected</strong><small>Last checked just now</small></span><button id="disconnectBtn" aria-label="Disconnect timetable">×</button></div>
+          <div class="or"><span>or</span></div>
+          <button class="manual-toggle" id="manualToggle" aria-expanded="false"><span>Enter a time manually</span><strong>+</strong></button>
+          <div class="manual-fields" id="manualFields">
+            <div class="field-grid">
+              <label>Date<input id="dateInput" type="date" value="2026-10-05" /></label>
+              <label>From<input id="fromInput" type="time" value="18:00" /></label>
+              <label>Until<input id="untilInput" type="time" value="22:00" /></label>
+            </div>
+          </div>
+          <div class="control-group"><label>What are you into?</label><div class="chips" id="interestChips"><button class="chip active">Games</button><button class="chip active">Technology</button><button class="chip active">Art &amp; Culture</button><button class="chip">Social</button><button class="chip">Sports</button><button class="chip">Talks &amp; Learning</button><button class="chip">Anything</button></div></div>
+          <div class="control-row"><label>Budget<select id="budgetInput"><option>Free only</option><option selected>Up to £10</option><option>Up to £20</option><option>Any</option></select></label><label>Search scope<select id="scopeInput"><option selected>UCL first, then London</option><option>UCL only</option><option>London</option></select></label></div>
+          <button class="primary-button" id="findBtn">Find activities <span>→</span></button>
+        </aside>
+
+        <section class="results-area">
+          <div class="results-header"><div><p class="eyebrow">YOUR NEXT OPENING</p><h2 id="freeBlockTitle">Monday, 18:00–22:00</h2><p id="resultsSub">Connect your timetable to find realistic gaps in your week.</p></div><div class="live-pill"><span class="status-dot"></span> live search</div></div>
+          <div class="timeline" id="timeline"><div class="timeline-label">YOUR SELECTED DATE</div><div class="timeline-track"><span class="busy busy-one">classes<br /><small>your timetable</small></span><span class="free-marker">free blocks appear here</span><span class="busy busy-two">classes</span></div></div>
+          <div class="free-blocks" id="freeBlocks" aria-live="polite"></div>
+          <div class="loading" id="loading"><div class="loader"></div><div><strong id="loadingTitle">Reading your free block…</strong><p id="loadingCopy">Checking what is happening nearby.</p></div></div>
+          <div class="results-grid" id="resultsGrid"></div>
+          <div class="empty-state" id="emptyState"><div class="empty-icon">✦</div><h3>Find something for the gap</h3><p>Choose your interests and let FreeBlock check the live web for events that fit your exact time and budget.</p><button class="secondary-button" id="demoBtn">Try the demo block</button></div>
+        </section>
+      </section>
+      <footer><span>Built for students who have a little time to spare.</span><span class="mono">TINYFISH × UCL AI SOCIETY</span></footer>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
